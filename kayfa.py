@@ -180,3 +180,22 @@ fig = px.imshow(
     text_auto = True
 )
 fig.show()
+
+# MULTIVARIATE BETWEEN AGE GROUP AND MONTHLY INCOME AND ATTRITION
+
+age_labels = ['18-25','26-30','31-35','36-40','41-45','46-50','51-55','56-60']
+
+df['age_group'] = pd.cut(df['age'],
+                          bins=[18, 25, 30, 35, 40, 45, 50, 55, 60],
+                          labels=age_labels)
+
+fig2 = px.box(
+    df,
+    x='age_group',
+    y='monthly_income',
+    color='attrition',
+    title='Monthly Income by Age Group & Attrition',
+    color_discrete_sequence=['purple', 'blue'],
+    category_orders={'age_group': age_labels}
+)
+fig2.show()
