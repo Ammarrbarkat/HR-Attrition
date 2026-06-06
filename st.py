@@ -98,9 +98,9 @@ with col3:
 
 st.markdown("---")
 
-# ══════════════════════════════════════════════
+
 # Page: Overview
-# ══════════════════════════════════════════════
+
 if page == "🏠 Overview":
     st.subheader("🏠 Overview")
     att_data = filtered['attrition'].value_counts().reset_index()
@@ -116,9 +116,9 @@ if page == "🏠 Overview":
     else:
         st.info(f"💡 **Insight:** {left_rate}% of employees left — reasonable but needs monitoring.")
 
-# ══════════════════════════════════════════════
+
 # Page: Univariate
-# ══════════════════════════════════════════════
+
 elif page == "📊 Univariate":
     st.subheader("📊 Univariate Analysis")
 
@@ -157,9 +157,9 @@ elif page == "📊 Univariate":
     else:
         st.error(f"🚨 **Insight:** Income gap of ${diff:,.0f} — Left (${avg_inc_left:,.0f}) vs Stayed (${avg_inc_stayed:,.0f}).")
 
-# ══════════════════════════════════════════════
+
 # Page: Bivariate
-# ══════════════════════════════════════════════
+
 elif page == "📈 Bivariate":
     st.subheader("📈 Bivariate Analysis")
 
@@ -199,9 +199,9 @@ elif page == "📈 Bivariate":
                   category_orders={'job_satisfaction': ['Low', 'Medium', 'High', 'Very High']})
     st.plotly_chart(fig4, use_container_width=True)
 
-# ══════════════════════════════════════════════
+
 # Page: Multivariate
-# ══════════════════════════════════════════════
+
 elif page == "🔥 Multivariate":
     st.subheader("🔥 Multivariate Analysis")
 
@@ -220,9 +220,9 @@ elif page == "🔥 Multivariate":
                       color_discrete_sequence=BIVA_COLORS)
     st.plotly_chart(fig2, use_container_width=True)
 
-# ══════════════════════════════════════════════
+
 # Q1 · The Headline
-# ══════════════════════════════════════════════
+
 elif page == "Q1 · The Headline":
     st.subheader("Q1 · The Headline")
     st.markdown("*What share of employees left overall, and which job role is losing the most people?*")
@@ -248,9 +248,9 @@ elif page == "Q1 · The Headline":
     top = role_rate.iloc[0]
     st.error(f"🚨 **{top['job_role']}** has the highest attrition rate at **{top['attrition_rate']}%** — HR should prioritize retention efforts in this sector first.")
 
-# ══════════════════════════════════════════════
+
 # Q2 · Overtime
-# ══════════════════════════════════════════════
+
 elif page == "Q2 · Overtime":
     st.subheader("Q2 · Overtime")
     st.markdown("*Are employees who work overtime more likely to leave, and by how much?*")
@@ -270,9 +270,9 @@ elif page == "Q2 · Overtime":
     diff_ot  = round(yes_rate - no_rate, 1)
     st.error(f"🚨 **Insight:** Employees working overtime leave at **{yes_rate}%** vs **{no_rate}%** for those who don't — a difference of **{diff_ot}%**. HR should review workload policies and consider overtime limits.")
 
-# ══════════════════════════════════════════════
+
 # Q3 · Remote Work
-# ══════════════════════════════════════════════
+
 elif page == "Q3 · Remote Work":
     st.subheader("Q3 · Remote Work")
     st.markdown("*Does offering remote work appear to keep people?*")
@@ -296,9 +296,9 @@ elif page == "Q3 · Remote Work":
     else:
         st.warning(f"⚠️ **Insight:** Remote workers leave at **{yes_r}%** vs **{no_r}%** — remote work alone doesn't seem to reduce attrition. Only **{remote_pct}%** work remotely, limiting what we can conclude.")
 
-# ══════════════════════════════════════════════
+
 # Q4 · Pay Fairness
-# ══════════════════════════════════════════════
+
 elif page == "Q4 · Pay Fairness":
     st.subheader("Q4 · Pay Fairness")
     st.markdown("*Within the same job level, do lower-paid employees leave more often?*")
@@ -320,9 +320,9 @@ elif page == "Q4 · Pay Fairness":
 
     st.warning("⚠️ **Insight:** Lower-paid employees (Q1) consistently show higher attrition rates within each job level. **Recommendation:** Establish clear pay bands ensuring the bottom quartile is brought closer to market median — this is where pay increases would have the highest retention impact.")
 
-# ══════════════════════════════════════════════
+
 # Q5 · Retention Timeline
-# ══════════════════════════════════════════════
+
 elif page == "Q5 · Retention Timeline":
     st.subheader("Q5 · Retention Timeline")
     st.markdown("*At what stage of an employee's time at the company is attrition highest?*")
@@ -346,9 +346,9 @@ elif page == "Q5 · Retention Timeline":
     peak_rate = timeline['attrition_rate'].max()
     st.error(f"🚨 **Insight:** Attrition peaks at **{peak}** with a rate of **{peak_rate}%**. Retention efforts should be focused on **onboarding and early career support** — this is where the company loses the most people.")
 
-# ══════════════════════════════════════════════
+
 # Q6 · Engagement Warning Signs
-# ══════════════════════════════════════════════
+
 elif page == "Q6 · Engagement Warning":
     st.subheader("Q6 · Engagement Warning Signs")
     st.markdown("*Which combination of Job Satisfaction + Work-Life Balance is the strongest early-warning sign?*")
@@ -367,9 +367,9 @@ elif page == "Q6 · Engagement Warning":
     worst = combo.loc[combo['attrition_rate'].idxmax()]
     st.error(f"🚨 **Insight:** The highest-risk combination is **Job Satisfaction = {worst['job_satisfaction']}** + **Work-Life Balance = {worst['work_life_balance']}** with **{worst['attrition_rate']}%** attrition rate. Managers should watch for employees showing both signals simultaneously.")
 
-# ══════════════════════════════════════════════
+
 # Q7 · Life Stage
-# ══════════════════════════════════════════════
+
 elif page == "Q7 · Life Stage":
     st.subheader("Q7 · Life Stage")
     st.markdown("*Do age, marital status, and number of dependents change who leaves?*")
@@ -401,9 +401,9 @@ elif page == "Q7 · Life Stage":
     worst_life = life.loc[life['attrition_rate'].idxmax()]
     st.error(f"🚨 **Insight:** Highest risk group: Age **{worst_life['age_group']}** + **{worst_life['marital_status']}** at **{worst_life['attrition_rate']}%**. Targeted retention benefits (flexible hours, childcare support) could help retain this segment.")
 
-# ══════════════════════════════════════════════
+
 # Q8 · Career Stagnation
-# ══════════════════════════════════════════════
+
 elif page == "Q8 · Career Stagnation":
     st.subheader("Q8 · Career Stagnation")
     st.markdown("*Does lack of growth drive attrition? Promotions, job level, leadership & innovation opportunities.*")
@@ -434,9 +434,9 @@ elif page == "Q8 · Career Stagnation":
     no_promo_rate = round((df[df['number_of_promotions'] == 0]['attrition'] == 'Left').mean() * 100, 1)
     st.error(f"🚨 **Insight:** Employees with **0 promotions** have a **{no_promo_rate}%** attrition rate. Employees without leadership or innovation opportunities also leave at higher rates. **Recommendation:** Implement clear career progression paths and promote from within.")
 
-# ══════════════════════════════════════════════
+
 # Q9 · Highest-Risk Profile
-# ══════════════════════════════════════════════
+
 elif page == "Q9 · Highest-Risk Profile":
     st.subheader("Q9 · Highest-Risk Profile")
     st.markdown("*Combine 3-4 factors to construct the single highest-risk employee profile.*")
@@ -482,9 +482,9 @@ elif page == "Q9 · Highest-Risk Profile":
 
     st.error(f"🚨 **Insight:** The high-risk profile has **{risk_rate}%** attrition vs company average of **{baseline}%** — that's **{diff_risk}% higher**. There are **{count:,} employees** matching this profile. Leadership should prioritize interventions for this group immediately.")
 
-# ══════════════════════════════════════════════
+
 # Q10 · What Moves the Needle
-# ══════════════════════════════════════════════
+
 elif page == "Q10 · What Moves the Needle":
     st.subheader("Q10 · What Moves the Needle")
     st.markdown("*If HR could fix only one thing next quarter, what does the data say it should be?*")
@@ -526,15 +526,15 @@ elif page == "Q10 · What Moves the Needle":
     **Estimated impact:** If attrition in this group drops by even 20%, the company could retain an estimated **{round(len(df[df['work_life_balance'].isin(['Poor','Fair'])]) * 0.2):,} employees** next quarter.
     """)
 
-# ══════════════════════════════════════════════
+
 # Dividers — skip
-# ══════════════════════════════════════════════
+
 elif page == "━━━━━━━━━━━━━━":
     st.info("👆 Please select a page from the navigation menu.")
 
-# ══════════════════════════════════════════════
+
 # Page: Data
-# ══════════════════════════════════════════════
+
 elif page == "📄 Data":
     st.subheader("📄 Raw Data")
     st.dataframe(filtered, use_container_width=True)
